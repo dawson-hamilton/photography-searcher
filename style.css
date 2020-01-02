@@ -1,0 +1,26 @@
+#time {
+    font-size: 25px;
+    color: black;
+}
+
+.nav {
+    background-color: dimgray;
+}
+
+#button {
+    background-color: red;
+}
+
+#search {
+    position: relative;
+    background-color: dimgray;
+    color: white;
+    text-align: center;
+    width: 175px;
+    left: 50px;
+}
+
+#form {
+    border: 10px;
+    border-color: black;
+}
