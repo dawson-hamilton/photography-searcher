@@ -4,11 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>APOD</title>
 </head>
 
 <body>
 
+    <nav class="nav">
+        <div class="nav-wrapper">
+            <a class="brand-logo">Photography Search <span id="time"></span></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="../index.html" id="button" class="waves-effect waves-light btn-large">
+                        Press to Go Back to Search Page</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="title"></h1>
+
+    <div class="apod-img"></div>
+
+    <p class="explanation"></p>
+
+    <h3 class="date"></h3>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="nasa-script.js"></script>
 </body>
 
 </html>
