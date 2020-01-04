@@ -5,5 +5,3 @@ $("#time").text(moment().format('MMMM Do YYYY,HH:mm:ss'));
 setInterval(function () {
     $("#time").text(moment().format('MMMM Do YYYY,HH:mm:ss'));
 }, 1000);
-
-setInterval();

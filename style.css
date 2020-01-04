@@ -11,16 +11,36 @@
     background-color: red;
 }
 
+#options {
+    display: inline;
+    border-color: lightgray;
+    color: gray;
+}
+
 #search {
     position: relative;
+    border-radius: 15px;
+    padding-bottom: 5px;;
     background-color: dimgray;
     color: white;
     text-align: center;
     width: 175px;
-    left: 50px;
+    left: 140px;
+    top: 22px;
 }
 
 #form {
-    border: 10px;
-    border-color: black;
+    position: relative;
+    top: 0px;
+    width: 85%;
+    border: 1px solid black;
+}
+
+#submitBtn {
+    background-color: dimgray;
+}
+
+#randBtn {
+    font-size: large;
+    background-color: red;
 }
