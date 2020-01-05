@@ -4,6 +4,10 @@ setInterval(function () {
     $("#time").text(moment().format('MMMM Do YYYY,HH:mm:ss'));
 }, 1000);
 
+$(document).ready(function () {
+    $('.datepicker').datepicker();
+});
+
 function buildApodUrl() {
     var queryUrl = "https://api.nasa.gov/planetary/apod?";
     var apodParams = { "api_key": "aAa4zky4JtLr7ASY61ZetQhJmbconfw4g2rZW9RR" };
