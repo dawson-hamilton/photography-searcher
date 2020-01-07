@@ -1,3 +1,12 @@
+.body {
+    background-image: url('images/cork-board.png');
+}
+
+.nasa {
+    background-image: url('images/moon-background-photo.png');
+    background-size: cover;
+}
+
 #time {
     font-size: 25px;
     color: black;
@@ -34,6 +43,7 @@
     top: 0px;
     width: 85%;
     border: 1px solid black;
+    background-color: white;
 }
 
 #submitBtn {
@@ -42,5 +52,36 @@
 
 #randBtn {
     font-size: large;
+    background-color: red;
+}
+
+.title {
+    text-align: center;
+    color: white;
+}
+
+.date {
+    text-align: center;
+    color: white;
+}
+
+.explanation {
+    background-color: dimgray;
+    color:white;
+    border-radius: 10px;
+    padding: 200px;
+}
+
+#date {
+    background-color: white;
+    height: 40px;
+}
+
+#dateTitle {
+    text-align: center;
+    color: white;   
+}
+
+#nasaBtn {
     background-color: red;
 }
