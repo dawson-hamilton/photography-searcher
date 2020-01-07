@@ -27,6 +27,24 @@ $(document).ready(function () {
 
     });
 
+    //random button function
+    $("#randBtn").on("click", function (event) {
+        event.preventDefault();
+
+
+        //alphabet letters to search
+        var letters = "abcdefghijklmnopqrstuvwxyz";
+
+        for (var i = 0; i < 30; ++i) {
+            //random number between 0 and 26
+            var rand = Math.floor((Math.random() * 26));
+            var searchMe = letters.charAt(rand);
+        }
+
+
+        fetchphotos(searchMe);
+    })
+
 
 
     //AJAX call for user search/keyword
