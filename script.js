@@ -14,18 +14,12 @@ $(document).ready(function () {
     $("#submitBtn").on("click", function (event) {
         event.preventDefault();
         //recognizing the html element hierarchy
-        var value = $(this).siblings("#password").val();
+        var value = $("#searchterm").val();
 
-        usersearch(value);
+        var number = $("#options").val();
+
+        usersearch(value, number);
     })
-
-
-    $("#submitBtn").on("click", function (event) {
-        event.preventDefault();
-        var searchHistory = $("#password").val().trim();
-        console.log(searchHistory)
-
-    });
 
     //random button function
     $("#randBtn").on("click", function (event) {
@@ -69,11 +63,12 @@ $(document).ready(function () {
 
 
     //AJAX call for user search/keyword
-    function usersearch(searchterm) {
-        var queryURL = "https://api.unsplash.com/photos/?client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
+    function usersearch(searchterm, number) {
+        var queryURL = "https://api.unsplash.com/search/photos/?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
 
-        queryURL = queryURL + "&query=" + searchterm
+        queryURL = queryURL + "&query=" + searchterm;
 
+        queryURL = queryURL + "&per_page=" + number;
 
 
         $.ajax({
@@ -81,59 +76,40 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
+            updatePage(response);
         }
         )
 
     };
 
-    //function to return results based on keyword
-    function fetchphotos(searchterm) {
-        var indivsearchURL = buildQueryURL(searchterm);
-
-        $.ajax({
-            url: indivsearchURL,
-            method: "GET"
-        }).then(updatePage);
-
-    };
-
-    //build customized API request based on searchterm
-    function buildQueryURL(searchterm) {
-        // var searchterm = $("#searchterm").val().trim();
-        console.log(searchterm);
-
-
-        var APIkey = "a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
-        var Upsplash = "https://api.unsplash.com/photos/?"
-        var URL = Upsplash + "&query=" + searchterm + "&client_id=" + APIkey;
-        console.log(URL);
-
-        return URL;
-
-    };
-
 
     //append photo results to the DOM
-    function updatePage(UpsplashData) {
-        console.log(UpsplashData);
+    function updatePage(UnsplashData, APItype) {
+        console.log(UnsplashData);
         $("#photocards").html("");
 
-        for (var i = 0; i < UpsplashData.list.length; i++) {
+        var data = UnsplashData.results;
+        if (APItype === "random") {
+            data = UnsplashData;
+        }
 
+        for (var i = 0; i < data.length; i++) {
+            var item = data[i];
 
-            var photo = item.links.html;
-            var description = item.alt_description;
+            var photo = item.urls.thumb;
+            var description = item.description;
             var username = item.user.name;
-            var link = item.urls.full;
+            var link = item.links.html;
 
             var col = $("<div>").addClass("col s12 m7")
             var card = $("<div>").addClass("card")
-            // var body = $("<div>").addClass("card-body p-2")
-            // var img = $("<img>").attr("src", "http://" + ".png")
+            var body = $("<div>").addClass("card-body p-2")
+            var img = $("<img>").attr("src", photo)
 
             var p1 = $("<p>").addClass("card-content").text(description)
 
-            col.append(card.append(body.append(img, p1)));
+            var a = $("<a>").attr("href", link).text(description)
+            col.append(card.append(body.append(img, a)));
 
             $("#photocards").append(col);
         }
@@ -142,5 +118,37 @@ $(document).ready(function () {
 
 
 
+    //to do the random photo button
+    // call photos without search
+
+    $("#randBtn").on("click", function (event) {
+        event.preventDefault();
+        //recognizing the html element hierarchy
+
+        var number = $("#options").val();
+
+        randosearch(30);
+    })
+
+
+    function randosearch(number) {
+        var queryURL = "https://api.unsplash.com/photos?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
+
+        queryURL = queryURL + "&per_page=" + number;
+
+        queryURL = queryURL + "&order_by=popular";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            updatePage(response, "random");
+        }
+        )
+
+    };
+
 
 });
+
