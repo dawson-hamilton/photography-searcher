@@ -31,19 +31,40 @@ $(document).ready(function () {
     $("#randBtn").on("click", function (event) {
         event.preventDefault();
 
+        randomSearch();
 
-        //alphabet letters to search
-        var letters = "abcdefghijklmnopqrstuvwxyz";
-
-        for (var i = 0; i < 30; ++i) {
-            //random number between 0 and 26
-            var rand = Math.floor((Math.random() * 26));
-            var searchMe = letters.charAt(rand);
-        }
-
-
-        fetchphotos(searchMe);
     })
+
+
+    //AJAX call for user search/keyword
+    function randomSearch() {
+        var queryURL = "https://api.unsplash.com/photos/?client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
+
+        queryURL = queryURL + "&query=";
+
+
+
+        $.ajax({
+            url: queryURL,
+            method: "GET/ photos/ random"
+        }).then(function (response) {
+
+            for (var i = 0; i < 30; ++i) {
+                console.log(response);
+                // create a div and an image
+                var newPicDiv = $("<div>");
+                var picImage = $("<img>");
+
+                picImage.attr("src", results[i].images.fixed_height.url);
+
+                newpicDiv.append(picImage);
+
+                $("#photocards").prepend(newPicDiv);
+            }
+        }
+        )
+
+    };
 
 
 
