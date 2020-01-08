@@ -3,7 +3,7 @@
 }
 
 .nasa {
-    background-image: url('../images/moon.png');
+    background-image: url('images/moon-background-photo.png');
     background-size: cover;
 }
 
@@ -70,4 +70,18 @@
     color:white;
     border-radius: 10px;
     padding: 200px;
+}
+
+#date {
+    background-color: white;
+    height: 40px;
+}
+
+#dateTitle {
+    text-align: center;
+    color: white;   
+}
+
+#nasaBtn {
+    background-color: red;
 }
