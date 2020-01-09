@@ -24,8 +24,7 @@ $.ajax({
 
     $(".title").text(apodData.title);
     $(".date").text(apodData.date);
-    var imgEl = $("<img class'col s10'>").attr("src", apodData.url);
-    $(".apod-img").append(imgEl);
+    $("#nasaImg").attr("src", apodData.url);
     $(".explanation").text(apodData.explanation);
 });
 
@@ -46,9 +45,11 @@ $("#nasaBtn").on("click", function () {
 
         $(".title").text(searchData.title);
         $(".date").text(searchData.date);
-        var imgEl = $("<img class'col s10'>").attr("src", searchData.url);
-        $(".apod-img").empty();
-        $(".apod-img").append(imgEl);
+        $("nasaImg").attr("src", searchData.url);
+        console.log(searchData.url);
+        $("#nasaImg").append();
+        // $(".apod-img").empty();
+        // $(".apod-img").append(imgEl);
         $(".explanation").text(searchData.explanation);
     });
 });
