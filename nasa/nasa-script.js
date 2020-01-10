@@ -1,3 +1,5 @@
+var apodData, searchData;
+
 $("#time").text(moment().format('MMMM Do YYYY,HH:mm:ss'));
 
 setInterval(function () {
@@ -16,11 +18,12 @@ function buildApodUrl() {
     return queryUrl + $.param(apodParams);
 }
 
+
 var apodUrl = buildApodUrl();
 $.ajax({
     url: apodUrl, method: "GET"
 }).then(function (data) {
-    var apodData = data;
+    apodData = data;
 
     $(".title").text(apodData.title);
     $(".date").text(apodData.date);
@@ -41,16 +44,12 @@ $("#nasaBtn").on("click", function () {
     $.ajax({
         url: searchApodUrl, method: "GET"
     }).then(function (data) {
-        var searchData = data;
+        searchData = data;
 
         $(".title").text(searchData.title);
         $(".date").text(searchData.date);
         $("#nasaImg").empty();
         $("#nasaImg").attr("src", searchData.url);
-        console.log(searchData.url);
-        // $("#nasaImg").append("#nasaImg");
-        // $(".apod-img").empty();
-        // $(".apod-img").append(imgEl);
         $(".explanation").text(searchData.explanation);
     });
 });

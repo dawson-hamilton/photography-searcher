@@ -57,7 +57,7 @@ $(document).ready(function () {
 
 
 
-
+        //append cards dynamically
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
 
@@ -92,7 +92,23 @@ $(document).ready(function () {
             col.append(card);
 
             $("#photocards").append(col);
+
+
         }
+
+        //error note if search term does not return results
+        if (UnsplashData.results.length === 0) {
+            console.log("here");
+            var error = $("#error").addClass("card-panel");
+            $("#error").text("No results. Please search another keyword.");
+
+        } else {
+            $("#error").empty();
+            console.log("here too!");
+        };
+
+
+
         //attach event listener to hearts
         $(".heart").on("click", function (event) {
 
@@ -113,6 +129,7 @@ $(document).ready(function () {
 
 
 
+
         })
 
     }
@@ -129,12 +146,13 @@ $(document).ready(function () {
 
 
 
+
+
     //to do the random photo button
     // call photos without search
 
     $("#randBtn").on("click", function (event) {
         event.preventDefault();
-
 
         randosearch();
     })
@@ -157,6 +175,7 @@ $(document).ready(function () {
         )
 
     };
+
 
 
 });
