@@ -13,19 +13,25 @@
 
     <nav class="nav">
         <div class="nav-wrapper">
-            <a class="brand-logo">Photography Search <span id="time"></span></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="../index.html" id="button" class="waves-effect waves-light btn-large">
-                        Press to Go Back to Search Page</a></li>
-            </ul>
+            <a class="brand-logo">Photo Search</a>
         </div>
     </nav>
+    <br>
+
+    <p id="time"></p>
 
     <div class="row">
-        <h3 id="dateTitle">Picture of the Day From a Different Day</h3>
+        <div class="col s2"></div>
+        <a href="../index.html" id="dntPress" class="waves-effect waves-light btn-large col s8">
+            Press Me to Go Back to the Home Page!</a>
+        <div class="col s2"></div>
+    </div>
+
+    <div class="row">
+        <h3 id="dateTitle">Search For Past Astronomy Pictures of the Day</h3>
 
         <div class="col s2"></div>
-        <input type="text" class="datepicker col s8" id="date" placeholder="Astronomy Day You Would Like to See">
+        <input type="text" class="datepicker col s8" id="date" placeholder="Astronomy Date">
         <div class="col s2"></div>
         <button class="btn waves-effect waves-light" id="nasaBtn" type="submit" name="action">Submit</button>
     </div>
@@ -36,8 +42,8 @@
 
     <div class="row">
         <div class="col s2"></div>
-        <div class="apod-img col s9"></div>
-        <div class="col s1"></div>
+        <img id="nasaImg" class="col s8">
+        <div class="col s2"></div>
     </div>
 
     <div class="row">
@@ -45,7 +51,6 @@
         <p class="explanation col s10"></p>
         <div class="col s1"></div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
