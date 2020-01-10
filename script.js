@@ -9,6 +9,9 @@ setInterval(function () {
 
 $(document).ready(function () {
 
+    //initialize favorites
+    localStorage.setItem('favorites', JSON.stringify([]));
+
 
     //Coding the functionality of the search button
     $("#submitBtn").on("click", function (event) {
@@ -69,9 +72,12 @@ $(document).ready(function () {
             var col = $("<div>").addClass("col s12 m9 l4 xl4")
             var card = $("<div>").addClass("card")
             var body = $("<div>").addClass("card-image")
+
             var cardTitle = $("<span>").addClass("card-title");
             $(cardTitle).text(username);
             var alink = $("<a>")
+            var heart = $("<div>").addClass("heart");
+            heart.text("❤️");
             $(alink).attr("href", link);
             $(alink).attr("target", "blank");
             var img = $("<img>").attr("src", photo)
@@ -80,6 +86,7 @@ $(document).ready(function () {
 
 
             alink.append(img);
+            body.append(heart);
             body.append(alink);
             body.append(cardTitle);
             card.append(body);
@@ -87,6 +94,31 @@ $(document).ready(function () {
 
             $("#photocards").append(col);
         }
+        //attach event listener to hearts
+        $(".heart").on("click", function (event) {
+
+            console.log(this);
+            //add a favorite
+
+            //read whats there
+            var temp = JSON.parse(localStorage.getItem('favorites'));
+
+
+
+            //add to the local storage
+            //get the url
+            temp.push(this.parentElement.getAttribute('href'));
+
+            //save it
+            localStorage.setItem('favorites', JSON.stringify(temp));
+
+
+
+
+
+
+
+        })
 
     }
 
