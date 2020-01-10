@@ -5,7 +5,6 @@ $(document).ready(function () {
     //initialize favorites
     localStorage.setItem('favorites', JSON.stringify([]));
 
-
     //Coding the functionality of the search button
     $("#submitBtn").on("click", function (event) {
         event.preventDefault();
@@ -17,9 +16,6 @@ $(document).ready(function () {
         usersearch(value, number);
     })
 
-
-
-
     //AJAX call for user search/keyword
     function usersearch(searchterm, number) {
         var queryURL = "https://api.unsplash.com/search/photos/?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
@@ -28,7 +24,6 @@ $(document).ready(function () {
 
         queryURL = queryURL + "&per_page=" + number;
 
-
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -36,11 +31,9 @@ $(document).ready(function () {
             console.log(response);
             apiCall = response.results;
             updatePage(response.results);
-        }
-        )
+        });
 
     };
-
 
     //append photo results to the DOM
     function updatePage(UnsplashData, APItype) {
@@ -50,13 +43,7 @@ $(document).ready(function () {
         // var data = UnsplashData.results;
 
         //handle data for fave button & random button
-        // if (APItype === "random" || APItype === "faves") {
         data = UnsplashData;
-        // }
-
-
-
-
 
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
@@ -65,24 +52,20 @@ $(document).ready(function () {
             var username = item.user.name;
             var link = item.links.html;
 
-
-            var col = $("<div>").addClass("col s12 m9 l4 xl4")
-            var card = $("<div>").addClass("card")
-            var body = $("<div>").addClass("card-image")
+            var col = $("<div>").addClass("col s12 m9 l4 xl4");
+            var card = $("<div>").addClass("card");
+            var body = $("<div>").addClass("card-image");
 
             var cardTitle = $("<span>").addClass("card-title");
             $(cardTitle).text(username);
-            var alink = $("<a>")
+            var alink = $("<a>");
             var heart = $("<div>").addClass("heart");
             heart.text("❤️");
             //the key to the kingdom - "Riley"
             heart.attr("data-index", i);
             $(alink).attr("href", link);
             $(alink).attr("target", "blank");
-            var img = $("<img>").attr("src", photo)
-
-
-
+            var img = $("<img>").attr("src", photo);
 
             alink.append(img);
             body.append(heart);
@@ -94,7 +77,6 @@ $(document).ready(function () {
             $("#photocards").append(col);
         }
 
-        //just posted this
         //error note if search term does not return results
         if (UnsplashData.length === 0) {
             console.log("here");
@@ -103,42 +85,17 @@ $(document).ready(function () {
         } else {
             $("#error").empty();
             console.log("here too!");
-        };
-
+        }
 
         //attach event listener to hearts
         $(".heart").on("click", function (event) {
-
-            console.log(this);
-            console.log(this.parentElement);
-            //correct one
-            console.log($(this).siblings().attr("href"))
-
-            console.log($(this).data("index"));
-
-            console.log(apiCall[$(this).data("index")]);
-
-
-
-
-            //add a favorite
-
-            //read whats there
             var temp = JSON.parse(localStorage.getItem('favorites'));
 
-
-
-            //add to the local storage
-            //get the object from global variable
-            //key to the kingdom
             temp.push(apiCall[$(this).data("index")]);
 
             //save it
             localStorage.setItem('favorites', JSON.stringify(temp));
-
-
-
-        })
+        });
 
     }
 
@@ -148,26 +105,17 @@ $(document).ready(function () {
         //read whats there
         var temp2 = JSON.parse(localStorage.getItem('favorites'));
 
-
         updatePage(temp2, "faves");
-    })
-
-
-
-    //to do the random photo button
-    // call photos without search
+    });
 
     $("#randBtn").on("click", function (event) {
         event.preventDefault();
 
-
         randosearch();
-    })
-
+    });
 
     function randosearch() {
         var queryURL = "https://api.unsplash.com/photos/random?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
-
 
         queryURL = queryURL + "&count=30";
 
@@ -178,8 +126,7 @@ $(document).ready(function () {
             console.log(response);
             apiCall = response;
             updatePage(response, "random");
-        }
-        )
+        });
 
     };
 
