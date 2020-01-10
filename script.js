@@ -93,6 +93,19 @@ $(document).ready(function () {
 
             $("#photocards").append(col);
         }
+
+        //just posted this
+        //error note if search term does not return results
+        if (UnsplashData.length === 0) {
+            console.log("here");
+            var error = $("#error").addClass("card-panel");
+            $("#error").text("No results. Please search another keyword.");
+        } else {
+            $("#error").empty();
+            console.log("here too!");
+        };
+
+
         //attach event listener to hearts
         $(".heart").on("click", function (event) {
 
