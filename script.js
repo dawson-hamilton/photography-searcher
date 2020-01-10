@@ -57,7 +57,7 @@ $(document).ready(function () {
 
 
 
-        //append cards dynamically
+
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
 
@@ -92,92 +92,83 @@ $(document).ready(function () {
             col.append(card);
 
             $("#photocards").append(col);
-
-
         }
+        //attach event listener to hearts
+        $(".heart").on("click", function (event) {
 
-        //error note if search term does not return results
-        if (UnsplashData.results.length === 0) {
-            console.log("here");
-            var error = $("#error").addClass("card-panel");
-            $("#error").text("No results. Please search another keyword.");
+            console.log(this);
+            console.log(this.parentElement);
+            //correct one
+            console.log($(this).siblings().attr("href"))
 
-        } else {
-            $("#error").empty();
-            console.log("here too!");
-        });
+            console.log($(this).data("index"));
 
-
-
-
-//attach event listener to hearts
-$(".heart").on("click", function (event) {
-
-    //add a favorite
-
-    //read whats there
-    var temp = JSON.parse(localStorage.getItem('favorites'));
-
-
-
-    //add to the local storage
-    //get the object from global variable
-    //key to the kingdom
-    temp.push(apiCall[$(this).data("index")]);
-
-    //save it
-    localStorage.setItem('favorites', JSON.stringify(temp));
+            console.log(apiCall[$(this).data("index")]);
 
 
 
 
-});
+            //add a favorite
+
+            //read whats there
+            var temp = JSON.parse(localStorage.getItem('favorites'));
 
 
 
-// faves button
-$("#favesBtn").on("click", function (event) {
-    event.preventDefault();
-    //read whats there
-    var temp2 = JSON.parse(localStorage.getItem('favorites'));
+            //add to the local storage
+            //get the object from global variable
+            //key to the kingdom
+            temp.push(apiCall[$(this).data("index")]);
 
-
-    updatePage(temp2, "faves");
-});
-
+            //save it
+            localStorage.setItem('favorites', JSON.stringify(temp));
 
 
 
+        })
 
-//to do the random photo button
-// call photos without search
-
-$("#randBtn").on("click", function (event) {
-    event.preventDefault();
-
-    randosearch();
-});
-
-
-function randosearch() {
-    var queryURL = "https://api.unsplash.com/photos/random?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
-
-
-    queryURL = queryURL + "&count=30";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        apiCall = response;
-        updatePage(response, "random");
     }
-    )
+
+    // faves button
+    $("#favesBtn").on("click", function (event) {
+        event.preventDefault();
+        //read whats there
+        var temp2 = JSON.parse(localStorage.getItem('favorites'));
+
+
+        updatePage(temp2, "faves");
+    })
+
+
+
+    //to do the random photo button
+    // call photos without search
+
+    $("#randBtn").on("click", function (event) {
+        event.preventDefault();
+
+
+        randosearch();
+    })
+
+
+    function randosearch() {
+        var queryURL = "https://api.unsplash.com/photos/random?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
+
+
+        queryURL = queryURL + "&count=30";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            apiCall = response;
+            updatePage(response, "random");
+        }
+        )
+
+    };
+
 
 });
-
-
-
-});
-
