@@ -1,3 +1,5 @@
+var apiCall = {};
+
 $(document).ready(function () {
 
     //initialize favorites
@@ -32,7 +34,8 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
-            updatePage(response);
+            apiCall = response.results;
+            updatePage(response.results);
         }
         )
 
@@ -44,11 +47,14 @@ $(document).ready(function () {
         console.log(UnsplashData);
         $("#photocards").html("");
 
-        var data = UnsplashData.results;
+        // var data = UnsplashData.results;
 
-        if (APItype === "random") {
-            data = UnsplashData;
-        }
+        //handle data for fave button & random button
+        // if (APItype === "random" || APItype === "faves") {
+        data = UnsplashData;
+        // }
+
+
 
 
         //append cards dynamically
@@ -69,6 +75,8 @@ $(document).ready(function () {
             var alink = $("<a>")
             var heart = $("<div>").addClass("heart");
             heart.text("❤️");
+            //the key to the kingdom - "Riley"
+            heart.attr("data-index", i);
             $(alink).attr("href", link);
             $(alink).attr("target", "blank");
             var img = $("<img>").attr("src", photo)
@@ -104,7 +112,6 @@ $(document).ready(function () {
         //attach event listener to hearts
         $(".heart").on("click", function (event) {
 
-            console.log(this);
             //add a favorite
 
             //read whats there
@@ -113,15 +120,31 @@ $(document).ready(function () {
 
 
             //add to the local storage
-            //get the url
-            temp.push(this.parentElement.getAttribute('href'));
+            //get the object from global variable
+            //key to the kingdom
+            temp.push(apiCall[$(this).data("index")]);
 
             //save it
             localStorage.setItem('favorites', JSON.stringify(temp));
 
+
+
+
         })
 
     }
+
+    // faves button
+    $("#favesBtn").on("click", function (event) {
+        event.preventDefault();
+        //read whats there
+        var temp2 = JSON.parse(localStorage.getItem('favorites'));
+
+
+        updatePage(temp2, "faves");
+    })
+
+
 
 
 
@@ -146,6 +169,7 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
+            apiCall = response;
             updatePage(response, "random");
         }
         )
