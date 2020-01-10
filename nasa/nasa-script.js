@@ -45,9 +45,10 @@ $("#nasaBtn").on("click", function () {
 
         $(".title").text(searchData.title);
         $(".date").text(searchData.date);
-        $("nasaImg").attr("src", searchData.url);
+        $("#nasaImg").empty();
+        $("#nasaImg").attr("src", searchData.url);
         console.log(searchData.url);
-        $("#nasaImg").append();
+        // $("#nasaImg").append("#nasaImg");
         // $(".apod-img").empty();
         // $(".apod-img").append(imgEl);
         $(".explanation").text(searchData.explanation);
