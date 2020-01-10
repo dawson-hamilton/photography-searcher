@@ -51,7 +51,7 @@ $(document).ready(function () {
         }
 
 
-
+        //append cards dynamically
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
 
@@ -84,7 +84,23 @@ $(document).ready(function () {
             col.append(card);
 
             $("#photocards").append(col);
+
+
         }
+
+        //error note if search term does not return results
+        if (UnsplashData.results.length === 0) {
+            console.log("here");
+            var error = $("#error").addClass("card-panel");
+            $("#error").text("No results. Please search another keyword.");
+
+        } else {
+            $("#error").empty();
+            console.log("here too!");
+        };
+
+
+
         //attach event listener to hearts
         $(".heart").on("click", function (event) {
 
@@ -103,12 +119,6 @@ $(document).ready(function () {
             //save it
             localStorage.setItem('favorites', JSON.stringify(temp));
 
-
-
-
-
-
-
         })
 
     }
@@ -121,16 +131,12 @@ $(document).ready(function () {
     $("#randBtn").on("click", function (event) {
         event.preventDefault();
 
-
         randosearch();
     })
 
 
     function randosearch() {
         var queryURL = "https://api.unsplash.com/photos/random?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
-
-
-
 
 
         queryURL = queryURL + "&count=30";
@@ -145,6 +151,7 @@ $(document).ready(function () {
         )
 
     };
+
 
 
 });
