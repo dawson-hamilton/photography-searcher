@@ -57,19 +57,18 @@ $(document).ready(function () {
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
 
-            var photo = item.urls.thumb;
-            var description = item.description;
+            var photo = item.urls.small;
             var username = item.user.name;
             var link = item.links.html;
 
-            var col = $("<div>").addClass("col s12 m7")
+            var col = $("<div>").addClass("col s12 m9 l4 xl4")
             var card = $("<div>").addClass("card")
             var body = $("<div>").addClass("card-body p-2")
             var img = $("<img>").attr("src", photo)
 
-            var p1 = $("<p>").addClass("card-content").text(description)
+            var p1 = $("<p>").addClass("card-content").text(username)
 
-            var a = $("<a>").attr("href", link).text(description)
+            var a = $("<a>").attr("href", link).text(username)
             col.append(card.append(body.append(img, a)));
 
             $("#photocards").append(col);
