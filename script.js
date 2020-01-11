@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     //AJAX call for user search/keyword
     function usersearch(searchterm, number) {
-        var queryURL = "https://api.unsplash.com/search/photos/?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
+        var queryURL = "https://api.unsplash.com/search/photos/?page=1&client_id=fea432ec0480ac54a9584903b85fa3349b09daa857adf8a6b797cc5821889596";
 
         queryURL = queryURL + "&query=" + searchterm;
 
@@ -117,7 +117,7 @@ $(document).ready(function () {
     });
 
     function randosearch() {
-        var queryURL = "https://api.unsplash.com/photos/random?page=1&client_id=a7cef5f3754b325bf85592d548cd55aa935b533b908cd0f0d48a15dc06c3983d";
+        var queryURL = "https://api.unsplash.com/photos/random?page=1&client_id=fea432ec0480ac54a9584903b85fa3349b09daa857adf8a6b797cc5821889596";
 
         queryURL = queryURL + "&count=30";
 
