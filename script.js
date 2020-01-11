@@ -32,7 +32,6 @@ $(document).ready(function () {
             apiCall = response.results;
             updatePage(response.results);
         });
-
     };
 
     //append photo results to the DOM
@@ -96,7 +95,6 @@ $(document).ready(function () {
             //save it
             localStorage.setItem('favorites', JSON.stringify(temp));
         });
-
     }
 
     // faves button
@@ -127,8 +125,5 @@ $(document).ready(function () {
             apiCall = response;
             updatePage(response, "random");
         });
-
     };
-
-
 });
