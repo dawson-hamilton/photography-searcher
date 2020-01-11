@@ -3,7 +3,7 @@ var apiCall = {};
 $(document).ready(function () {
 
     //initialize favorites
-    if (JSON.parse(localStorage.getItem('favorites')).length === 0) {
+    if (JSON.parse(localStorage.getItem('favorites')) === null) {
         localStorage.setItem('favorites', JSON.stringify([]));
     }
 
