@@ -3,7 +3,9 @@ var apiCall = {};
 $(document).ready(function () {
 
     //initialize favorites
-    localStorage.setItem('favorites', JSON.stringify([]));
+    if (JSON.parse(localStorage.getItem('favorites')).length === 0) {
+        localStorage.setItem('favorites', JSON.stringify([]));
+    }
 
     //Coding the functionality of the search button
     $("#submitBtn").on("click", function (event) {
@@ -39,8 +41,6 @@ $(document).ready(function () {
         console.log(UnsplashData);
         $("#photocards").html("");
 
-        // var data = UnsplashData.results;
-
         //handle data for fave button & random button
         data = UnsplashData;
 
@@ -59,12 +59,16 @@ $(document).ready(function () {
             $(cardTitle).text(username);
             var alink = $("<a>");
             var heart = $("<div>").addClass("heart");
-            heart.text("❤️");
+            heart.text("🤍");
             //the key to the kingdom - "Riley"
             heart.attr("data-index", i);
             $(alink).attr("href", link);
             $(alink).attr("target", "blank");
             var img = $("<img>").attr("src", photo);
+
+            if (APItype === "faves") {
+                heart.text("❤️");
+            }
 
             alink.append(img);
             body.append(heart);
@@ -78,16 +82,16 @@ $(document).ready(function () {
 
         //error note if search term does not return results
         if (UnsplashData.length === 0) {
-            console.log("here");
             var error = $("#error").addClass("card-panel");
             $("#error").text("No results. Please search another keyword.");
         } else {
             $("#error").empty();
-            console.log("here too!");
         }
 
         //attach event listener to hearts
         $(".heart").on("click", function (event) {
+            $(this).text("❤️");
+            $(this).append();
             var temp = JSON.parse(localStorage.getItem('favorites'));
 
             temp.push(apiCall[$(this).data("index")]);

@@ -107,10 +107,12 @@
     z-index: 2;
     right: 40px;
     font-size: 45px;
+    cursor:pointer;
 }
 
 .card-panel{
    text-align: center !important;
    background-color: teal !important;
     font-size: x-large;
+    color: white;
 };
