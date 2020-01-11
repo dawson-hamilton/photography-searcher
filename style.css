@@ -78,7 +78,6 @@
 }
 
 .explanation {
-    /* background-color: dimgray; */
     color:white;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     border-radius: 10px;
@@ -108,10 +107,12 @@
     z-index: 2;
     right: 40px;
     font-size: 45px;
+    cursor:pointer;
 }
 
 .card-panel{
    text-align: center !important;
    background-color: teal !important;
     font-size: x-large;
+    color: white;
 };
