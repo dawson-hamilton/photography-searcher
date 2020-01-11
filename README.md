@@ -12,16 +12,16 @@ day to see the astronomy picture for that day.
 ### Gallery
 ​
 Home:
-![Image title](./relativeLinkToImage.png "Image title")
+![Home Page View](./images/home-page.png "home page")
 ​
 Search for Something:
-![Home Page View](./relativeLinkToImage.png "Home Page View")
+![When You Search For Something](./images/searches.png "searched for something")
 ​
 Favorites:
-![Home Page View](./relativeLinkToImage.png "Home Page View")
+![Favorites Page](./images/favorites.png "faves")
 ​
 NASA APOD Page:
-![Home Page View](./relativeLinkToImage.png "Home Page View")
+![NASA APOD Page](./images/nasa-apod.png "nasa page")
 ### Problem
 ​
 Currently ...
